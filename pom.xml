@@ -15,11 +15,11 @@
   </properties>
 
   <dependencies>
-    <!-- Selenium 4.19.1 поддерживает Java 8 -->
+    <!-- Selenium 3.141.59 - последняя версия для Java 8 -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.19.1</version>
+      <version>3.141.59</version>
     </dependency>
 
     <dependency>
@@ -35,11 +35,11 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- WebDriver Manager -->
+    <!-- WebDriver Manager (тоже нужна старая версия для Java 8) -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>5.9.2</version>
+      <version>5.6.3</version>
     </dependency>
   </dependencies>
 

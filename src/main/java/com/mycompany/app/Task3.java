@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -7,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Task3 {
     public static void getWeatherForecast() {
-        System.setProperty("webdriver.chrome.driver", "/Users/alexandr/Downloads/chromedriver-mac-arm64/chromedriver");
+        WebDriverManager.chromedriver().setup();
         WebDriver webDriver = new ChromeDriver();
 
         try {
@@ -65,6 +65,11 @@ public class Task3 {
 
                 output.append(line);
                 System.out.print(line);
+            }
+
+            java.io.File resultDir = new java.io.File("result");
+            if (!resultDir.exists()) {
+                resultDir.mkdirs();
             }
 
             try (PrintWriter writer = new PrintWriter(new FileWriter("result/forecast.txt"))) {

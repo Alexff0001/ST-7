@@ -1,5 +1,6 @@
 package com.mycompany.app;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
@@ -9,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Task2 {
     public static void getIPAddress() {
-        System.setProperty("webdriver.chrome.driver", "/Users/alexandr/Downloads/chromedriver-mac-arm64/chromedriver");
+        WebDriverManager.chromedriver().setup();
         WebDriver webDriver = new ChromeDriver();
 
         try {
