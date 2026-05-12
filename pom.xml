@@ -15,10 +15,11 @@
   </properties>
 
   <dependencies>
+    <!-- Selenium 4.19.1 поддерживает Java 8 -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.15.0</version>
+      <version>4.19.1</version>
     </dependency>
 
     <dependency>
@@ -34,7 +35,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- WebDriver Manager для автоматической загрузки драйвера -->
+    <!-- WebDriver Manager -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
