@@ -15,7 +15,6 @@
   </properties>
 
   <dependencies>
-    <!-- Selenium 3.141.59 - последняя версия для Java 8 -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
@@ -35,7 +34,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- WebDriver Manager (тоже нужна старая версия для Java 8) -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>

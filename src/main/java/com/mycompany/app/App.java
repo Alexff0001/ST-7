@@ -3,15 +3,22 @@ package com.mycompany.app;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class App {
+
+    private static final String PASSWORD_GENERATOR_URL = "https://www.calculator.net/password-generator.html";
+    private static final int TIMEOUT_SECONDS = 10;
+
     public static void main(String[] args) {
-        String generatedPassword = getGeneratedPassword();
-        System.out.println("Пароль: " + generatedPassword);
+        displayResults();
+    }
+
+    private static void displayResults() {
+        String secureKey = extractSecurePassword();
+        System.out.println("Сгенерированный ключ: " + secureKey);
         System.out.println();
 
         Task2.getIPAddress();
@@ -20,21 +27,27 @@ public class App {
         Task3.getWeatherForecast();
     }
 
-    private static String getGeneratedPassword() {
+    private static String extractSecurePassword() {
         WebDriverManager.chromedriver().setup();
-        WebDriver webDriver = new ChromeDriver();
+        WebDriver browserDriver = new ChromeDriver();
 
         try {
-            webDriver.get("https://www.calculator.net/password-generator.html");
-            WebDriverWait wait = new WebDriverWait(webDriver, 10);
-            return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='verybigtext']")))
-                    .getText().trim();
+            browserDriver.get(PASSWORD_GENERATOR_URL);
+            WebDriverWait waiter = new WebDriverWait(browserDriver, TIMEOUT_SECONDS);
 
-        } catch (Exception e) {
-            System.out.println("Error: " + e.toString());
+            String generatedCode = waiter.until(
+                    ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='verybigtext']"))
+            ).getText().trim();
+
+            return generatedCode.replaceAll("^\\s+", "").replaceAll("\\s+$", "");
+
+        } catch (Exception executionError) {
+            System.err.println("Ошибка при получении пароля: " + executionError.getMessage());
+            return "Ошибка_генерации";
         } finally {
-            webDriver.quit();
+            if (browserDriver != null) {
+                browserDriver.quit();
+            }
         }
-        return "";
     }
 }
